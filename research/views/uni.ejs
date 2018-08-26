@@ -34,14 +34,19 @@
     </div>
   </p>
 
-  <% for(var i =0; i< fruits.length;i++){ %>
-    <div class="과일">
-    <%= fruits[i] %>
-  </div>
-    <%} %>
 
+      <% for(var i =0; i< fruits.length;i++){ %>
+        <div class="과일">
+        <%= fruits[i] %>
+      </div>
+        <%} %>
+ 
   <script>
-    
+      let 과일 = document.getElementsByClassName('과일')[0];
+
+      과일.addEventListener('click',function(){
+        alert('밥먹자')
+      })
   </script>
 </body>
 </html>

@@ -42,6 +42,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/kyc',kycRouter);
 app.use('/uni', uniRouter);
+// user 안에 들어있는애들을 다 미들웨어라고 함. 미들웨어가 익스프레스의 핵심임.!
 
 
 // 라우터에 걸리는 주소가 없으면, 404에러를 띄워줌.

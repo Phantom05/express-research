@@ -25,7 +25,22 @@ router.route('/') // 이 슬래쉬 주소가 app.js에 있는 uniRouter주소와
  
   })
   .post(function(req,res){
-
+    let userAddress = req.body.userAddress;
+    let userPassword = req.body.userPassword;
+    let uploadImg = req.body.uploadImg;
+    
+    unirest.post('http://mockbin.com/request')
+    .header('Accept', 'application/json')
+    .field({
+      'userAddress': userAddress,
+      'userPassword':userPassword,
+    })
+    .attach({
+      'file': uploadImg, // 여기 뒷주소에 http 또는 https가 없으면 유니레스트가 로컬로 인식함. 그래서 퍼블릭 기준으로 경로가 잡힘. static을 잡아놔서.
+    })
+    .end(function (response) {
+      console.log(response.body);
+    })
   })
   .put(function(req,res){
 
