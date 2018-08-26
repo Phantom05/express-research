@@ -44,17 +44,24 @@ app.use('/kyc',kycRouter);
 app.use('/uni', uniRouter);
 
 
+// 라우터에 걸리는 주소가 없으면, 404에러를 띄워줌.
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  next(createError(404));
+  next(createError(404)); //다음 미들웨어 파라미터로 createError(404)함수를 보내줌.
+  //가장 상단에 http-errors의 모듈로 만들어서 보내줌 createError함수
 });
+
+
+// 보통 400번대는 클라이언트에서 에러가 발생한것
+// 500번대는 서버단에서 에러가 발생한것.
+// db에 요청을 보냈는데 응답이 없거나 그런것들.
 
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
-
+  console.log(err)
   // render the error page
   res.status(err.status || 500);
   res.render('error');
